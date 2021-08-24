@@ -77,6 +77,35 @@ public class Lampada {
 		}
 		return true;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Lampada other = (Lampada) obj;
+		if (marca == null) {
+			if (other.marca != null)
+				return false;
+		} else if (!marca.equals(other.marca))
+			return false;
+		if (voltagem == null) {
+			if (other.voltagem != null)
+				return false;
+		} else if (!voltagem.equals(other.voltagem))
+			return false;
+		return true;
+	}
+	
+	public boolean isligada() {
+		if (ligada == true) {
+			return true;
+		} 
+		return false;
+	}
 }
 /*
 
