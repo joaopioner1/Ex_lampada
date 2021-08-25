@@ -6,8 +6,14 @@ public class Program {
 
 	public static void main(String[] args) {
 		//Author: Joao Vitor Souza Pioner Date: 24/08/2021
-		Lampada l1 = new Lampada("generico", "bege", 220, 60);
+		Lampada l1 = new Lampada("generico", "bege", 220, 60, true, false);
 		System.out.println(l1);
+		l1.desliga();
+		l1.liga(110);
+		System.out.println(l1);
+		l1.liga(250);
+		System.out.println(l1);
+
 	}
 
 }

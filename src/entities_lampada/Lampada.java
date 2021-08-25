@@ -1,7 +1,5 @@
 package entities_lampada;
 
-import exeception_lampada.VoltagemException;
-
 public class Lampada {
 	
 	private final String marca, cor;
@@ -106,15 +104,16 @@ public class Lampada {
 	}
 	
 	public boolean liga(int tomadaVolts) {
-		if (voltagem >= tomadaVolts || desliga() != true) {
+		if (voltagem >= tomadaVolts || desliga() != true && queimada != true) {
 			return true;
 		}
-		throw new VoltagemException("A voltagem da tomada não pode ser mais que a voltagem da lampada, "
-				+ "e a lampada deve estar desligada.");
+		setQueimada(true);
+		setLigada(false);
+		return false;
 	}
 	
 	public boolean desliga() {
-		return ligada == true ? true : false; //operador ternario
+		return ligada == true && queimada != true ? true : false; //operador ternario
 	}
 }
 /*
