@@ -1,12 +1,13 @@
 package application_lampada;
 
+import entities_lampada.Lampada;
 
 public class Program {
 
 	public static void main(String[] args) {
 		//Author: Joao Vitor Souza Pioner Date: 24/08/2021
-		
-		
+		Lampada l1 = new Lampada("generico", "bege", 220, 60);
+		System.out.println(l1);
 	}
 
 }

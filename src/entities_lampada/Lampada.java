@@ -16,7 +16,6 @@ public class Lampada {
 	}
 	
 	public Lampada(String marca, String cor, Integer voltagem, Integer potencia) {
-		voltagemCerta();
 		this.marca = marca;
 		this.cor = cor;
 		this.voltagem = voltagem;
@@ -24,7 +23,6 @@ public class Lampada {
 	}
 
 	public Lampada(String marca, String cor, Integer voltagem, Integer potencia, Boolean ligada, Boolean queimada) {
-		voltagemCerta();
 		this.marca = marca;
 		this.cor = cor;
 		this.voltagem = voltagem;
@@ -71,13 +69,6 @@ public class Lampada {
 				+ ", ligada=" + ligada + ", queimada=" + queimada + "]";
 	}
 	
-	private boolean voltagemCerta() {
-		if (voltagem != 110 && voltagem != 220) {
-			throw new VoltagemException("A voltagem deve ser 110 ou 220 volts!");
-		}
-		return true;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -100,11 +91,30 @@ public class Lampada {
 		return true;
 	}
 	
-	public boolean isligada() {
+	public boolean isLigada() {
 		if (ligada == true) {
 			return true;
 		} 
 		return false;
+	}
+	
+	public boolean isQueimada() {
+		if (queimada == true) {
+			return true;
+		} 
+		return false;
+	}
+	
+	public boolean liga(int tomadaVolts) {
+		if (voltagem >= tomadaVolts || desliga() != true) {
+			return true;
+		}
+		throw new VoltagemException("A voltagem da tomada não pode ser mais que a voltagem da lampada, "
+				+ "e a lampada deve estar desligada.");
+	}
+	
+	public boolean desliga() {
+		return ligada == true ? true : false; //operador ternario
 	}
 }
 /*
