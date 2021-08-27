@@ -1,17 +1,14 @@
 package entities_lampada;
 
 public class Lampada {
-	
-	private final String marca, cor;
-	private final Integer voltagem, potencia;
-	private Boolean ligada, queimada;
-	
-	public Lampada() {
-		this.marca = "";
-		this.cor = "";
-		this.voltagem = null;
-		this.potencia = null;
-	}
+	//botar bivolt 
+	private final String marca;
+	private final String cor;
+	private final Integer voltagem;
+	private final Integer potencia;
+	private Boolean ligada;
+	private Boolean queimada;
+
 	
 	public Lampada(String marca, String cor, Integer voltagem, Integer potencia) {
 		this.marca = marca;
@@ -21,10 +18,7 @@ public class Lampada {
 	}
 
 	public Lampada(String marca, String cor, Integer voltagem, Integer potencia, Boolean ligada, Boolean queimada) {
-		this.marca = marca;
-		this.cor = cor;
-		this.voltagem = voltagem;
-		this.potencia = potencia;
+		this(marca, cor, voltagem, potencia);
 		this.ligada = ligada;
 		this.queimada = queimada;
 	}
@@ -33,16 +27,8 @@ public class Lampada {
 		return ligada;
 	}
 
-	public void setLigada(Boolean ligada) {
-		this.ligada = ligada;
-	}
-
 	public Boolean getQueimada() {
 		return queimada;
-	}
-
-	public void setQueimada(Boolean queimada) {
-		this.queimada = queimada;
 	}
 
 	public String getMarca() {
@@ -66,38 +52,16 @@ public class Lampada {
 		return "Lampada [marca=" + marca + ", cor=" + cor + ", voltagem=" + voltagem + ", potencia=" + potencia
 				+ ", ligada=" + ligada + ", queimada=" + queimada + "]";
 	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Lampada other = (Lampada) obj;
-		if (marca == null) {
-			if (other.marca != null)
-				return false;
-		} else if (!marca.equals(other.marca))
-			return false;
-		if (voltagem == null) {
-			if (other.voltagem != null)
-				return false;
-		} else if (!voltagem.equals(other.voltagem))
-			return false;
-		return true;
-	}
-	
+
 	public boolean isLigada() {
-		if (ligada == true) {
+		if (this.ligada == true) {
 			return true;
 		} 
 		return false;
 	}
 	
 	public boolean isQueimada() {
-		if (queimada == true) {
+		if (this.queimada == true) {
 			return true;
 		} 
 		return false;
@@ -107,13 +71,13 @@ public class Lampada {
 		if (voltagem >= tomadaVolts || desliga() != true && queimada != true) {
 			return true;
 		}
-		setQueimada(true);
-		setLigada(false);
+		this.queimada = true;
+		this.ligada = false;
 		return false;
 	}
 	
-	public boolean desliga() {
-		return ligada == true && queimada != true ? true : false; //operador ternario
+	public boolean desliga() {//tem que alterar
+		return this.ligada && !this.queimada ? true : false; //operador ternario
 	}
 }
 /*
